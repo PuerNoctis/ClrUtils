@@ -89,6 +89,14 @@ static HRESULT __stdcall appDomainSpecificProcEntry(void* data) {
     return 0;
 }
 
+std::wstring ClrRuntime::getVersionString(void) const {
+    DWORD verLen = MAX_PATH;
+    wchar_t ver[MAX_PATH];
+    std::memset(ver, 0, verLen * sizeof(wchar_t));
+    _impl->_runtimeInfo->GetVersionString(ver, &verLen);
+    return std::wstring(ver);
+}
+
 uint32_t ClrRuntime::getCurrentAppDomainId(void) const {
     DWORD appDomainId;
     (void)_impl->_runtimeHost->GetCurrentAppDomainId(&appDomainId);

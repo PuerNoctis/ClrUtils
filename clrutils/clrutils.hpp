@@ -31,7 +31,7 @@ SOFTWARE.
 #   define CLRUTILS_SYMPRIVATE
 #else
 #   define CLRUTILS_SYMPUBLIC __declspec(dllimport)
-#   define CLRUTILS_SYMPRIVATEö
+#   define CLRUTILS_SYMPRIVATE
 #endif
 
 /* Includes */
@@ -51,6 +51,7 @@ class CLRUTILS_SYMPUBLIC ClrRuntime final {
         ClrRuntime& operator = (const ClrRuntime& rhs) = delete;
         ClrRuntime& operator = (ClrRuntime&& rhs);
 
+        std::wstring getVersionString(void) const;
         uint32_t getCurrentAppDomainId(void) const;
         long executeInAppDomain(uint32_t appDomainId, AppDomainSpecificProc proc, void* args) const;
 

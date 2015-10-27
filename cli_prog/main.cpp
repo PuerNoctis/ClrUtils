@@ -33,9 +33,12 @@ int main(int argc, char** argv) {
         auto& rt = ClrUtils::getRuntimes().front();
         auto id = rt.getCurrentAppDomainId();
 
+        std::wcout << L"-- First .NET Runtime is version " << rt.getVersionString().c_str() << L" --" << std::endl;
+        std::cout << "-- Executing on AppDomain " << id << " --" << std::endl;
         rt.executeInAppDomain(id, [](void*) { std::cout << "Hello World from a .NET AppDomain!" << std::endl; }, nullptr);
     }
     else {
+        std::cout << "-- No .NET runtime loaded --" << std::endl;
         std::cout << "Hello world from native domain!" << std::endl;
     }
 
